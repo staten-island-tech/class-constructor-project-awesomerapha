@@ -1,14 +1,48 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <h1>Video Game Lister</h1>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="banner">
+      <h1 class="header">
+        Video Game Lister
+      </h1>
+    </div>
+
+    <div class="user-input">
+      <form id="videogame-form">
+        <div class="videogame-form-input">
+          <label for="alias" id="aliasword"> Title</label>
+          <input type="text" id="alias" class="text-box" />
+        </div>
+
+        <div class="videogame-form-input">
+          <label for="powers" id="powersword"> Genre</label>
+          <input type="text" id="powers" class="text-box" />
+        </div>
+
+        <div class="videogame-form-input">
+          <label for="first-appearance" id="firstappearanceword">
+            Year of Release</label
+          >
+          <input type="text" id="first-appearance" class="text-box" />
+        </div>
+        <div class="hero-form-input">
+          <input type="submit" value="Submit" class="btn" />
+        </div>
+      </form>
+    </div>
+
+    <div class="display"></div>
+
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
