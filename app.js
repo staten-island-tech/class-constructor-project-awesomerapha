@@ -17,7 +17,15 @@ class gameCreator{
 // *****View // class for the UI which contains methods
 
 class UI {
+    htmlConstructor(){
+        let html = '<div class="display-title">%title</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="display-age">%age%</div><div class="remove-game"><p class="remove-game">Remove Game &#10006;</p></div>'
+        let newHtml = html.replace('%title%', gameCreator.title);
+        newHtml = newHtml.replace('%genre%', gameCreator.genre);
+        newHtml = newHtml.replace('%yearofrelease%', gameCreator.yearOfRelease);
+        newHtml = newHtml.replace('%age%', gameCreator.calculateAge);
+    }
     
+
 }
 //creates/inserts the html for the UI DISPLAY
 
@@ -40,9 +48,7 @@ eventListeners();
 
 
 //instantiate new class/object album with variable name
-function createGame() {
-    
-}
+
 //instantiate new UI const ui = new UI()
 
 //call relevant methods
