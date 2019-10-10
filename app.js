@@ -1,7 +1,7 @@
 //one class to create the object person, album, movie ****Model
 //take arguments
 class gameCreator{
-    construction(yearOfRelease, title, genre){
+    constructor(yearOfRelease, title, genre){
         this.yearOfRelease = yearOfRelease;
         this.title = title;
         this.genre = genre;
@@ -12,8 +12,13 @@ class gameCreator{
 }
 
 
+
+
 // *****View // class for the UI which contains methods
 
+class UI {
+    
+}
 //creates/inserts the html for the UI DISPLAY
 
 //clear fields method
