@@ -1,5 +1,6 @@
 //one class to create the object person, album, movie ****Model
 //take arguments
+
 class gameCreator{
     constructor(yearOfRelease, title, genre){
         this.yearOfRelease = yearOfRelease;
@@ -17,16 +18,27 @@ class gameCreator{
 // *****View // class for the UI which contains methods
 
 class UI {
-    htmlConstructor(){
-        let html = '<div class="display-title">%title</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="display-age">%age%</div><div class="remove-game"><p class="remove-game">Remove Game &#10006;</p></div>'
+    constructor(htmlConstructor){
+    htmlConstructor() {
+        document.querySelector('#hello').addEventListener('click', fuck);
+        
+    }
+}
+    
+
+}
+function fuck() {
+    const newGame = new gameCreator(document.querySelector('#title'), document.querySelector('#genre'), document.querySelector('#yearrelease'));
+        let html = '<div class="display-title">%title%</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="display-age">%age%</div><div class="remove-game"><p class="remove-game">Remove Game &#10006;</p></div>';
         let newHtml = html.replace('%title%', newGame.title);
         newHtml = newHtml.replace('%genre%', newGame.genre);
         newHtml = newHtml.replace('%yearofrelease%', newGame.yearOfRelease);
         newHtml = newHtml.replace('%age%', newGame.calculateAge);
-    }
-    
-
+        display.insertAdjacentHTML('beforeend', newHtml);
+        console.log('hello');
+        
 }
+new UI.htmlConstructor();
 //creates/inserts the html for the UI DISPLAY
 
 //clear fields method
@@ -38,12 +50,13 @@ class UI {
 
 //Controller combines UI and model
 //event handler with function
-function eventListeners() {
-    form.addEventListener('submit', ); //Figure out
-    display.addEventListener('click', ); //Figure Out
-    const newGame = new gameCreator(document.querySelector('#title'), document.querySelector('#genre'), document.querySelector('#yearrelease'));
+/* function eventListeners() {
+    const form = document.querySelector('#hello');
+    form.addEventListener('click', UI.htmlConstructor); //Figure out
+    //display.addEventListener('click', ); //Figure Out
+    
 }
-eventListeners();
+eventListeners(); */
 
 //get values
 
