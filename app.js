@@ -19,10 +19,10 @@ class gameCreator{
 class UI {
     htmlConstructor(){
         let html = '<div class="display-title">%title</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="display-age">%age%</div><div class="remove-game"><p class="remove-game">Remove Game &#10006;</p></div>'
-        let newHtml = html.replace('%title%', gameCreator.title);
-        newHtml = newHtml.replace('%genre%', gameCreator.genre);
-        newHtml = newHtml.replace('%yearofrelease%', gameCreator.yearOfRelease);
-        newHtml = newHtml.replace('%age%', gameCreator.calculateAge);
+        let newHtml = html.replace('%title%', newGame.title);
+        newHtml = newHtml.replace('%genre%', newGame.genre);
+        newHtml = newHtml.replace('%yearofrelease%', newGame.yearOfRelease);
+        newHtml = newHtml.replace('%age%', newGame.calculateAge);
     }
     
 
@@ -41,6 +41,7 @@ class UI {
 function eventListeners() {
     form.addEventListener('submit', ); //Figure out
     display.addEventListener('click', ); //Figure Out
+    const newGame = new gameCreator(document.querySelector('#title'), document.querySelector('#genre'), document.querySelector('#yearrelease'));
 }
 eventListeners();
 
