@@ -19,7 +19,7 @@ class gameCreator{
 
 class UI {
     constructor(htmlConstructor){
-    htmlConstructor() {
+    this.htmlConstructor = () => {
         document.querySelector('#hello').addEventListener('click', fuck);
         
     }
