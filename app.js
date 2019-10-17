@@ -21,32 +21,28 @@ function createNewGame(){
 // *****View // class for the UI which contains methods
 
 class UI {
-    constructor(yearOfRelease, title, genre){
-    this.yearOfRelease = newGame.yearOfRelease
-    this.title = newGame.title
-    this.genre = newGame.genre
-    
-    
-}
+
     //creates/inserts the html for the UI DISPLAY
-htmlConstructor() {
-    
+htmlConstructor(e) {
+    console.log('hello');
     let html = '<div class="display-title">%title%</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="display-age">%age%</div><div class="remove-game"><p class="remove-game">Remove Game &#10006;</p></div>';
     let newHtml = html.replace('%title%', this.title);
     newHtml = newHtml.replace('%genre%', this.genre);
     newHtml = newHtml.replace('%yearofrelease%', this.yearOfRelease);
     newHtml = newHtml.replace('%age%', this.calculateAge);
     display.insertAdjacentHTML('beforeend', newHtml);
-    console.log('hello');
-    
+    e.preventDefault();
 }
 //clear fields method
 clearFields() {
 
 }
-//remove something/objec
-removeGame() {
-
+//remove something/object
+removeGame(e) {
+    if(e.target.parentElement.classList.contains('remove-game')){
+        e.target.parentElement.parentElement.remove();
+        //console.log(e.target.parentElement);
+    }
 }
     
 
@@ -62,10 +58,10 @@ removeGame() {
 //Controller combines UI and model
 //event handler with function
 function eventListeners() {
-    const form = document.querySelector('#hello');
-    form.addEventListener('click', UI.htmlConstructor); //Figure out
-    //display.addEventListener('click', ); //Figure Out
-    
+    const ui = new UI;
+    const form = document.querySelector('#videogame-form');
+    form.addEventListener('submit', ui.htmlConstructor);
+    display.addEventListener('click', ui.removeGame)
 }
 eventListeners(); 
 
