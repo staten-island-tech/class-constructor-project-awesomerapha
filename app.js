@@ -24,12 +24,13 @@ class UI {
 
     //creates/inserts the html for the UI DISPLAY
 htmlConstructor(e) {
+    const game = new gameCreator(document.querySelector('#yearrelease'), document.querySelector('#title'), document.querySelector('#genre'))
+    console.log(game.title);
     console.log('hello');
-    let html = '<div class="display-title">%title%</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="display-age">%age%</div><div class="remove-game"><p class="remove-game">Remove Game &#10006;</p></div>';
-    let newHtml = html.replace('%title%', this.title);
-    newHtml = newHtml.replace('%genre%', this.genre);
-    newHtml = newHtml.replace('%yearofrelease%', this.yearOfRelease);
-    newHtml = newHtml.replace('%age%', this.calculateAge);
+    let html = '<div class="display-title">%title%</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="remove-game"><p class="remove-game">Remove Game &#10006;</p></div>';
+    let newHtml = html.replace('%title%', game.title);
+    newHtml = newHtml.replace('%genre%', game.genre);
+    newHtml = newHtml.replace('%yearofrelease%', game.yearOfRelease);
     display.insertAdjacentHTML('beforeend', newHtml);
     e.preventDefault();
 }
@@ -58,6 +59,7 @@ removeGame(e) {
 //Controller combines UI and model
 //event handler with function
 function eventListeners() {
+    
     const ui = new UI;
     const form = document.querySelector('#videogame-form');
     form.addEventListener('submit', ui.htmlConstructor);
