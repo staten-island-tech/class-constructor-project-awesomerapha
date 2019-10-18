@@ -5,14 +5,12 @@ class gameCreator{
         this.title = title;
         this.genre = genre;
     }
-    calculateAge(){
-        return new Date().getUTCFullYear - this.yearOfRelease;
-    }
+    
 }
 
 //take arguments
 function createNewGame(){
-    const newGame = new gameCreator(document.querySelector('#yearrelease'), document.querySelector('#title'), document.querySelector('#genre'));
+    const newGame = new gameCreator(document.querySelector('#yearrelease').value, document.querySelector('#title').value, document.querySelector('#genre').value);
 }
 
 
@@ -24,12 +22,13 @@ class UI {
 
     //creates/inserts the html for the UI DISPLAY
 htmlConstructor(e) {
-    let html = '<div class="display-title">%title%</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="remove-game"><p class="remove-game">Remove Game &#10006;</p></div>';
-    let newHtml = html.replace('%title%', game.title);
-    newHtml = newHtml.replace('%genre%', game.genre);
-    newHtml = newHtml.replace('%yearofrelease%', game.yearOfRelease);
-    display.insertAdjacentHTML('beforeend', newHtml);
-    e.preventDefault();
+    let html = '<div class="display-title">%title%</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="remove-game"><p> Remove Game &#10006;</p></div>';
+    const newGame = new gameCreator(document.querySelector('#yearrelease').value, document.querySelector('#title').value, document.querySelector('#genre').value);
+     let newHtml = html.replace('%title%', newGame.title);
+     newHtml = newHtml.replace('%genre%', newGame.genre);
+     newHtml = newHtml.replace('%yearofrelease%', newGame.yearOfRelease);
+     display.insertAdjacentHTML('beforeend', newHtml);
+     e.preventDefault();
 }
 //clear fields method
 clearFields() {
@@ -37,9 +36,12 @@ clearFields() {
 }
 //remove something/object
 removeGame(e) {
-    if(e.target.parentElement.classList.contains('remove-game')){
-        e.target.parentElement.parentElement.remove();
-        //console.log(e.target.parentElement);
+    // if(e.target.parentElement.classList.contains('remove-game')){
+    //     e.target.parentElement.parentElement.remove();
+    //     //console.log(e.target.parentElement);
+    // }
+    if(e.target.className === "remove-game"){
+        e.target.parentElement.remove();
     }
 }
     
@@ -56,8 +58,6 @@ removeGame(e) {
 //Controller combines UI and model
 //event handler with function
 function eventListeners() {
-    const game = new gameCreator('hello','hello','hello');
-    console.log(game.title);
     const ui = new UI;
     const form = document.querySelector('#videogame-form');
     form.addEventListener('submit', ui.htmlConstructor);
