@@ -24,8 +24,6 @@ class UI {
 
     //creates/inserts the html for the UI DISPLAY
 htmlConstructor(e) {
-    const game = new gameCreator(document.querySelector('#yearrelease'), document.querySelector('#title'), document.querySelector('#genre'))
-    console.log(game.title);
     let html = '<div class="display-title">%title%</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="remove-game"><p class="remove-game">Remove Game &#10006;</p></div>';
     let newHtml = html.replace('%title%', game.title);
     newHtml = newHtml.replace('%genre%', game.genre);
