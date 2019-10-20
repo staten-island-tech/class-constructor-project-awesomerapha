@@ -1,17 +1,16 @@
 //one class to create the object person, album, movie ****Model
 class gameCreator{
-    constructor(yearOfRelease, title, genre){
+    constructor(yearOfRelease, title, genre, imglink){
         this.yearOfRelease = yearOfRelease;
         this.title = title;
         this.genre = genre;
+        this.imglink = imglink;
     }
     
 }
 
 //take arguments
-function createNewGame(){
-    const newGame = new gameCreator(document.querySelector('#yearrelease').value, document.querySelector('#title').value, document.querySelector('#genre').value);
-}
+
 
 
 
@@ -21,33 +20,29 @@ function createNewGame(){
 class UI {
 
     //creates/inserts the html for the UI DISPLAY
-htmlConstructor(e) {
-    let html = '<div class="display-title">%title%</div><div class="display-genre">%genre%</div><div class="display-yearOfRelease">%yearofrelease%</div><div class="remove-game"><p> Remove Game &#10006;</p></div>';
-    const newGame = new gameCreator(document.querySelector('#yearrelease').value, document.querySelector('#title').value, document.querySelector('#genre').value);
-     let newHtml = html.replace('%title%', newGame.title);
-     newHtml = newHtml.replace('%genre%', newGame.genre);
-     newHtml = newHtml.replace('%yearofrelease%', newGame.yearOfRelease);
-     display.insertAdjacentHTML('beforeend', newHtml);
-     e.preventDefault();
+htmlConstructor(game) {
+    
+    let html = '<div class="display-game"><div class="display-title">%title%</div><div class="display-genre">%genre%</div><div class="display-yearofrelease">%yearofrelease%</div><div class="game-cover"><img src="%imglink%"></div><div class="remove-game">Remove Game X</div>';
+     let newHtml = html.replace('%title%', game.title);
+     newHtml = newHtml.replace('%genre%', game.genre);
+     newHtml = newHtml.replace('%yearofrelease%', game.yearOfRelease);
+     newHtml = newHtml.replace('%imglink%', game.imglink);
+     document.querySelector('.display').insertAdjacentHTML('beforeend', newHtml);
+     
 }
 //clear fields method
 clearFields() {
-
+    document.getElementById('videogame-form').reset();
 }
 //remove something/object
-removeGame(e) {
-    // if(e.target.parentElement.classList.contains('remove-game')){
-    //     e.target.parentElement.parentElement.remove();
-    //     //console.log(e.target.parentElement);
-    // }
-    if(e.target.className === "remove-game"){
-        e.target.parentElement.remove();
-    }
-}
-    
-
+removeGame(target) {
+    if (target.className === 'remove-game') {
+        target.parentElement.remove();
+        
 }
 
+}
+}
 
 
 
@@ -57,13 +52,35 @@ removeGame(e) {
 
 //Controller combines UI and model
 //event handler with function
-function eventListeners() {
+
+/* function eventListeners() {
     const ui = new UI;
     const form = document.querySelector('#videogame-form');
     form.addEventListener('submit', ui.htmlConstructor);
     display.addEventListener('click', ui.removeGame)
 }
-eventListeners(); 
+eventListeners();  */
+
+document.getElementById('videogame-form').addEventListener('submit', function(e){
+    const title = document.getElementById('title').value;
+    const genre = document.getElementById('genre').value;
+    const yearOfRelease = document.getElementById('yearrelease').value;
+    const imglink = document.getElementById('imglink').value;
+    if(title.length == 0 || genre.length == 0 || yearOfRelease.length == 0 || imglink.length == 0){
+        alert('Fill Out All Fields Please');
+    }
+    else{
+    const game = new gameCreator(title, genre, yearOfRelease, imglink);
+    
+    const ui = new UI();
+
+    ui.htmlConstructor(game);
+
+    ui.clearFields();
+
+    e.preventDefault();
+    }
+});
 
 //get values
 
@@ -76,3 +93,12 @@ eventListeners();
 
 
 //seperate event handler for removing/deleting
+document.querySelector('.display').addEventListener('click', function(e){
+    const ui = new UI();
+ 
+    ui.removeGame(e.target);
+
+    ui.clearFields();
+
+    e.preventDefault(); 
+});
