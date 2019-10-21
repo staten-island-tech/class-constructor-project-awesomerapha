@@ -72,20 +72,22 @@ form {
     transform: translateY(-1px);
     box-shadow: 0 .5rem 1rem rgba(0,0,0.2);
 }
-.display {
+.display div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-direction: column;
+    flex-direction: row;
     height: 10rem;
     font-size: 2.2rem;
     width: 100%;
     margin-top: 15rem;
+    margin-left: 5rem;
     
 }
 
 
-#display-image img{
+
+img{
     height: 10rem;
 }
 
